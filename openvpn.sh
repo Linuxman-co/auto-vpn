@@ -7,7 +7,7 @@ echo [*] Installing OpenVPN\n
 sudo apt install openvpn openssl -y -q
 
 echo [*] Copying Config Files\n
-sudo cp {server.conf,win-client.conf,linmac-client.conf} /etc/openvpn/
+sudo cp server.conf /etc/openvpn/
 
 echo [*] Creating Server Certificates
 echo [*] Generating CA
