@@ -4,7 +4,7 @@ OpenVPNPath=/etc/openvpn
 GetInterface=$(ip add | grep ^[0-9] | awk 'NR==2 {print $2}' | tr -d ":")
 
 echo [*] Installing OpenVPN\n
-sudo apt install openvpn openssl -y -q
+sudo apt install openvpn openssl mailx -y -q
 
 echo [*] Copying Config Files\n
 sudo cp server.conf /etc/openvpn/
