@@ -26,3 +26,10 @@ Ubuntu/Debian
 4. Run the script
 
     `./openvpn.sh`
+
+# Windows Client
+1. Run the win-client.sh script and add the client name followed by your email.
+
+    `./win-client Client-Name my@email.address`
+    
+    The Script will automatically generate a configuration file for this VPN and email it to you! (Check your spam)
