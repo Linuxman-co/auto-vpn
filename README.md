@@ -14,7 +14,7 @@ Easily create an anonymous VPN with Digital Ocean, no logs, destroy at any time 
 
     `cd auto-vpn`
     
-    `chmod +x openvpn.sh`
+    `chmod +x {openvpn.sh,win-client.sh}`
     
     During the setup, select **yes** on the prompts for IP Tables
 
