@@ -1,6 +1,9 @@
 # auto-vpn
 Easily create an anonymous VPN with Digital Ocean, no logs, destroy at any time with no trace. You **can** use this for your own personal server if you wish but the whole purpose of this script is to create disposable VPN's in DigitalOcean or any other VPS Provider.
 
+# Distributions
+Ubuntu/Debian
+
 # Instructions
 1. CD Into temp or wherever you want to download the files
 
