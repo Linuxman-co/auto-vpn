@@ -24,7 +24,7 @@ create_client_config() {
 	echo dev-mnode OpenVPN >> $ClientConf
 	echo proto tcp >> $ClientConf
 	echo remote $PublicIP 1194 >> $ClientConf
-	echo resolve-retry infinite >> $ClientConf
+	echo resolv-retry infinite >> $ClientConf
 	echo nobind >> $ClientConf
 	echo persist-key >> $ClientConf
 	echo persist-tun >> $ClientConf
