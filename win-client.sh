@@ -67,4 +67,4 @@ then
 	exit 1
 fi
 
-create_client_config
+create_client_config "$1" "$2"
