@@ -21,7 +21,7 @@ create_client_config() {
 	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Creating Config\e[0m\e[39m"
 	echo client >> $ClientConf
 	echo dev tun >> $ClientConf
-	echo dev-mnode OpenVPN >> $ClientConf
+	echo dev-node OpenVPN >> $ClientConf
 	echo proto tcp >> $ClientConf
 	echo remote $PublicIP 1194 >> $ClientConf
 	echo resolv-retry infinite >> $ClientConf
