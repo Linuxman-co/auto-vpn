@@ -9,16 +9,16 @@ display_usage() {
 create_client_config() {
 	ClientDir=/etc/openvpn/$1
 	ClientConf=/etc/openvpn/$1/$1.ovpn
-	PublicIP=$(curl icanhazip.com)
-	echo [*] Prepping Client Environment
+	PublicIP=$(curl -s icanhazip.com)
+	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Prepping Client Environment\e[0m\e[39m"
 	sudo mkdir $ClientDir
 
-	echo [*] Generating Client Cetificate for $1
+	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generating Client Cetificate for $1\e[0m\e[39m"
 	sudo openssl genrsa -out $ClientDir/$1.key 2048
 	sudo openssl req -new -key $ClientDir/$1.key -out $ClientDir/$1.csr -subj "/C=US/ST=New York/L=New York City/O=Beeswax/OU=Nunya/CN=anonymous" -nodes
 	sudo openssl x509 -req -days 365 -in $ClientDir/$1.csr -CA /etc/openvpn/ca.crt -CAkey /etc/openvpn/ca.key -set_serial 01 -out $ClientDir/$1.crt
 
-	echo [*] Creating Config
+	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Creating Config\e[0m\e[39m"
 	echo client >> $ClientConf
 	echo dev tun >> $ClientConf
 	echo dev-mnode OpenVPN >> $ClientConf
@@ -36,17 +36,17 @@ create_client_config() {
 	echo cipher AES-256-CBC >> $ClientConf
 	echo verb 0 >> $ClientConf
 
-	echo [*] Copying CA and TA
+	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Copying CA and TA\e[0m\e[39m"
 	cp /etc/openvpn/ca.crt $ClientDir/
 	cp /etc/openvpn/ta.key $ClientDir/
 
-	echo [*] Compressing Client Config
+	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Compressing Client Config\e[0m\e[39m"
 	zip $ClientDir/$1.zip $ClientDir/*.*
 
-	echo [*] Sending ZIP to $2
+	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Sending ZIP to $2"\e[0m\e[39m
 	echo "Attached is the VPN Client Config for $1" | mail -s "OpenVPN Client for $1" $2 -A $ClientDir/$1.zip
 	
-	echo "Client configuration has been emailed! Check your spam"
+	echo -e "\e[1m\e[32mClient configuration has been emailed! Check your spam\e[0m\e[39m"
 }
 
 if [[ $USER -ne "root" ]]
