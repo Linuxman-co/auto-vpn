@@ -10,12 +10,13 @@ create_client_config() {
 	ClientDir=/etc/openvpn/$1
 	ClientConf=/etc/openvpn/$1/$1.ovpn
 	PublicIP=$(curl -s icanhazip.com)
+	Host=$(hostname)
 	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Prepping Client Environment\e[0m\e[39m"
 	sudo mkdir $ClientDir
 
 	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generating Client Cetificate for $1\e[0m\e[39m"
 	sudo openssl genrsa -out $ClientDir/$1.key 2048
-	sudo openssl req -new -key $ClientDir/$1.key -out $ClientDir/$1.csr -subj "/C=US/ST=New York/L=New York City/O=Beeswax/OU=Nunya/CN=anonymous" -nodes
+	sudo openssl req -new -key $ClientDir/$1.key -out $ClientDir/$1.csr -subj "/C=US/ST=New York/L=New York City/O=Beeswax/OU=Nunya/CN=$Host" -nodes
 	sudo openssl x509 -req -days 365 -in $ClientDir/$1.csr -CA /etc/openvpn/ca.crt -CAkey /etc/openvpn/ca.key -set_serial 01 -out $ClientDir/$1.crt
 
 	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Creating Config\e[0m\e[39m"
