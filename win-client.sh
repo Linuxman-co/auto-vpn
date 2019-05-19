@@ -34,7 +34,7 @@ create_client_config() {
 	echo remote-cert-tls server >> $ClientConf
 	echo tls-auth ta.key 1 >> $ClientConf
 	echo cipher AES-256-CBC >> $ClientConf
-	echo verb 0 >> $ClientConf
+	echo verb 3 >> $ClientConf
 
 	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Copying CA and TA\e[0m\e[39m"
 	cp /etc/openvpn/ca.crt $ClientDir/
