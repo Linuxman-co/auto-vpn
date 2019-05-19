@@ -11,7 +11,7 @@ create_client_config() {
 	ClientConf=/etc/openvpn/$1/$1.ovpn
 	PublicIP=$(curl icanhazip.com)
 	echo [*] Prepping Client Environment
-	sudo mkdir $ClientDir/$1
+	sudo mkdir $ClientDir
 
 	echo [*] Generating Client Cetificate for $1
 	sudo openssl genrsa -out $ClientDir/$1.key 2048
