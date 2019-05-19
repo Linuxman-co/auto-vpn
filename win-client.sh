@@ -16,7 +16,7 @@ create_client_config() {
 
 	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generating Client Cetificate for $1\e[0m\e[39m"
 	sudo openssl genrsa -out $ClientDir/$1.key 2048
-	sudo openssl req -new -sha256 -key $ClientDir/$1.key -out $ClientDir/$1.csr -subj "/C=./ST=./L=./O=./OU=./CN=$Host" -nodes
+	sudo openssl req -new -sha256 -key $ClientDir/$1.key -subj "/C=AA/ST=BB/L=CC/O=DD/OU=EE/CN=$Host" -out $ClientDir/$1.csr -nodes
 	sudo openssl x509 -req -days 365 -in $ClientDir/$1.csr -CA /etc/openvpn/ca.crt -CAkey /etc/openvpn/ca.key -out $ClientDir/$1.crt -sha256
 
 	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Creating Config\e[0m\e[39m"
