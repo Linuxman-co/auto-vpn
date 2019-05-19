@@ -2,7 +2,6 @@
 
 OpenVPNPath=/etc/openvpn
 GetInterface=$(ip add | grep ^[0-9] | awk 'NR==2 {print $2}' | tr -d ":")
-Host=$(hostname)
 
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Checking for updates\e[39m\e[0m"
 sudo apt update
@@ -20,11 +19,11 @@ sudo cp server.conf $OpenVPNPath/
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Creating Server Certificates\e[39m\e[0m"
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generating CA\e[39m\e[0m"
 sudo openssl genrsa -out $OpenVPNPath/ca.key 2048
-sudo openssl req -new -x509 -days 1826 -key $OpenVPNPath/ca.key -out $OpenVPNPath/ca.crt -subj "/C=US/ST=New York/L=New York City/O=Beeswax/OU=Nunya/CN=$Host" -nodes
+sudo openssl req -new -x509 -days 1826 -key $OpenVPNPath/ca.key -out $OpenVPNPath/ca.crt -subj "/C=AU/ST=Some-State/L=/O=/OU=/CN=openvpn" -nodes
 
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generating Certificate\e[39m\e[0m"
 sudo openssl genrsa -out $OpenVPNPath/server.key 2048
-sudo openssl req -new -key $OpenVPNPath/server.key -out $OpenVPNPath/server.csr -subj "/C=US/ST=New York/L=New York City/O=Beeswax/OU=Nunya/CN=$Host"
+sudo openssl req -new -key $OpenVPNPath/server.key -out $OpenVPNPath/server.csr -subj "/C=AU/ST=Some-State/L=/O=/OU=/CN=openvpn"
 sudo openssl x509 -req -days 365 -in $OpenVPNPath/server.csr -CA $OpenVPNPath/ca.crt -CAkey $OpenVPNPath/ca.key -set_serial 01 -out $OpenVPNPath/server.crt
 
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generate Diffie-Hellman PEM\e[39m\e[0m"
