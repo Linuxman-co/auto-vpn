@@ -43,7 +43,7 @@ create_client_config() {
 	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Compressing Client Config\e[0m\e[39m"
 	zip $ClientDir/$1.zip $ClientDir/*.*
 
-	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Sending ZIP to $2"\e[0m\e[39m
+	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Sending ZIP to $2\e[0m\e[39m"
 	echo "Attached is the VPN Client Config for $1" | mail -s "OpenVPN Client for $1" $2 -A $ClientDir/$1.zip
 	
 	echo -e "\e[1m\e[32mClient configuration has been emailed! Check your spam\e[0m\e[39m"
