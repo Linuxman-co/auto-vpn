@@ -11,17 +11,17 @@ echo [*] Installing OpenVPN\n
 sudo apt install openvpn openssl mailutils -y -q
 
 echo [*] Copying Config Files\n
-sudo cp server.conf /etc/openvpn/
+sudo cp server.conf $OpenVPNPath/
 
 echo [*] Creating Server Certificates
 echo [*] Generating CA
 sudo openssl genrsa -out $OpenVPNPath/ca.key 2048
-sudo openssl req -new -x509 -days 1826 -key $OpenVPNPath/ca.key -out $OpenVPNPath/ca.crt -subj "/C=US/ST=New York/L=New York City/O=Beeswax/OU=Nunya/CN=anonymous"
+sudo openssl req -new -x509 -days 1826 -key $OpenVPNPath/ca.key -out $OpenVPNPath/ca.crt -subj "/C=US/ST=New York/L=New York City/O=Beeswax/OU=Nunya/CN=anonymous" -nodes
 
 echo [*] Generating Certificate
 sudo openssl genrsa -out $OpenVPNPath/server.key 2048
 sudo openssl req -new -key $OpenVPNPath/server.key -out $OpenVPNPath/server.csr -subj "/C=US/ST=New York/L=New York City/O=Beeswax/OU=Nunya/CN=anonymous"
-sudo openssl x509 -req -days 365 -in $OpenVPNPath/server.csr -CA $OpenVPNPath/ca.crt -CAkey $OpenVPNPath/ca.key -set_serial 01 -out $OpenVPNPath/server.crt -nodes
+sudo openssl x509 -req -days 365 -in $OpenVPNPath/server.csr -CA $OpenVPNPath/ca.crt -CAkey $OpenVPNPath/ca.key -set_serial 01 -out $OpenVPNPath/server.crt
 
 echo [*] Generate Diffie-Hellman PEM
 sudo openssl dhparam -out $OpenVPNPath/dh2048.pem 2048
