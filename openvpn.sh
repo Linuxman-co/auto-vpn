@@ -8,7 +8,7 @@ sudo apt update
 sudo apt dist-upgrade -y -q
 
 echo [*] Installing OpenVPN\n
-sudo apt install openvpn openssl mailx -y -q
+sudo apt install openvpn openssl mailutils -y -q
 
 echo [*] Copying Config Files\n
 sudo cp server.conf /etc/openvpn/
