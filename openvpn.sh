@@ -3,6 +3,10 @@
 OpenVPNPath=/etc/openvpn
 GetInterface=$(ip add | grep ^[0-9] | awk 'NR==2 {print $2}' | tr -d ":")
 
+echo [*] Checking for updates
+sudo apt update
+sudo apt dist-upgrade -y
+
 echo [*] Installing OpenVPN\n
 sudo apt install openvpn openssl mailx -y -q
 
