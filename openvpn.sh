@@ -9,8 +9,9 @@ sudo apt dist-upgrade -y -q
 
 echo [*] Installing OpenVPN\n
 sudo apt install openvpn openssl mailutils -y -q
-echo > /var/log/openvpn/openvpn-status.log
-ecbo > /var/log/openvpn/openvpn.log
+mkdir /var/log/openvpn
+touch /var/log/openvpn/openvpn-status.log
+touch /var/log/openvpn/openvpn.log
 
 echo [*] Copying Config Files\n
 sudo cp server.conf $OpenVPNPath/
