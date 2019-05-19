@@ -46,3 +46,10 @@ sudo apt install iptables-persistent -y -q
 echo [*] Enabling OpenVPN on Startup
 sudo systemctl enable openvpn@server.service
 sudo systemctl start openvpn@server.service
+
+echo [*] Checking Status
+status=$(systemctl status openvpn@server | grep Active | awk '{print $2 $3}')
+if [ status == 'active(running)' ]; then
+    echo Complete with no errors! Enjoy!
+    exit 0
+fi
