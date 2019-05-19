@@ -15,8 +15,8 @@ create_client_config() {
 
 	echo [*] Generating Client Cetificate for $1
 	sudo openssl genrsa -out $ClientDir/$1.key 2048
-	sudo openssl req -new -key $ClientDir/$1.key -out $ClientDir/$1.csr -subj "/C=US/ST=New York/L=New York City/O=Beeswax/OU=Nunya/CN=anonymous"
-	sudo openssl x509 -req -days 365 -in $ClientDir/$1.csr -CA /etc/openvpn/ca.crt -CAkey /etc/openvpn/ca.key -set_serial 01 -out $ClientDir/$1.crt -nodes
+	sudo openssl req -new -key $ClientDir/$1.key -out $ClientDir/$1.csr -subj "/C=US/ST=New York/L=New York City/O=Beeswax/OU=Nunya/CN=anonymous" -nodes
+	sudo openssl x509 -req -days 365 -in $ClientDir/$1.csr -CA /etc/openvpn/ca.crt -CAkey /etc/openvpn/ca.key -set_serial 01 -out $ClientDir/$1.crt
 
 	echo [*] Creating Config
 	echo client >> $ClientConf
@@ -45,11 +45,13 @@ create_client_config() {
 
 	echo [*] Sending ZIP to $2
 	echo "Attached is the VPN Client Config for $1" | mail -s "OpenVPN Client for $1" $2 -A $ClientDir/$1.zip
+	
+	echo "Client configuration has been emailed! Check your spam"
 }
 
 if [[ $USER -ne "root" ]]
 then
-	echo "Run as root!"
+	echo -e "\e[1m\e[31mRun as root!\e[39m\e[0m"
 	exit 1
 fi
 
@@ -59,7 +61,7 @@ then
 	exit 0
 fi
 
-if [ $# -le 0 ]
+if [ $# -le 1 ]
 then
 	display_usage
 	exit 1
