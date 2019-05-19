@@ -13,7 +13,7 @@ mkdir /var/log/openvpn
 touch /var/log/openvpn/openvpn-status.log
 touch /var/log/openvpn/openvpn.log
 
-echo [*] Copying Config Files\n
+echo [*] Copying Config Files
 sudo cp server.conf $OpenVPNPath/
 
 echo [*] Creating Server Certificates
