@@ -25,7 +25,7 @@ sudo openssl req -x509 -new -nodes -key $OpenVPNPath/ca.key -sha256 -days 1826 -
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generating Certificate\e[39m\e[0m"
 sudo openssl genrsa -out $OpenVPNPath/server.key 2048
 sudo openssl req -new -key $OpenVPNPath/server.key -subj "/C=AA/ST=BB/L=CC/O=DD/OU=EE/CN=$Host" -out $OpenVPNPath/server.csr
-sudo openssl x509 -req -in $OpenVPNPath/server.csr -CA $OpenVPNPath/ca.crt -CAkey $OpenVPNPath/ca.key -out $OpenVPNPath/server.crt -days 365 -sha256
+sudo openssl x509 -req -in $OpenVPNPath/server.csr -CA $OpenVPNPath/ca.crt -CAkey $OpenVPNPath/ca.key -set_serial 01 -out $OpenVPNPath/server.crt -days 365 -sha256
 
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generate Diffie-Hellman PEM\e[39m\e[0m"
 sudo openssl dhparam -out $OpenVPNPath/dh2048.pem 2048
