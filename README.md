@@ -20,6 +20,8 @@ Ubuntu/Debian
     `chmod +x {openvpn.sh,win-client.sh}`
     
     During the setup, select **yes** on the prompts for IP Tables
+    
+    During Postfix Configuration, select **Internet Site**, **system mail name** will be the hostname of your VPS.
 
 4. Run the script
 
