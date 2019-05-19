@@ -33,3 +33,5 @@ Ubuntu/Debian
     `./win-client.sh Client-Name my@email.address`
     
     The Script will automatically generate a configuration file for this VPN and email it to you! (Check your spam)
+    
+2. After installing the OpenVPN Client in Windows, rename the tun interface it creates to OpenVPN so the config works as it should.
