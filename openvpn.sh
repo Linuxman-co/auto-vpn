@@ -49,7 +49,7 @@ sudo systemctl start openvpn@server.service
 
 echo [*] Checking Status
 status=$(systemctl status openvpn@server | grep Active | awk '{print $2 $3}')
-if [ status == 'active(running)' ]; then
+if [ $status == 'active(running)' ]; then
     echo Complete with no errors! Enjoy!
     exit 0
 fi
