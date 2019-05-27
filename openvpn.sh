@@ -18,10 +18,10 @@ echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Copying Config Files\e[39m\e[0m"
 sudo cp server.conf $OpenVPNPath/
 
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Creating Server Certificates\e[39m\e[0m"
-echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generating CA\e[39m\e[0m"
+echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Copying CA\e[39m\e[0m"
 cp /usr/share/doc/openvpn/examples/sample-keys/{ca.crt,ca.key} $OpenVPNPath
 
-echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generating Certificate\e[39m\e[0m"
+echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Copying Certificate\e[39m\e[0m"
 gzip -d /usr/share/doc/openvpn/examples/sample-keys/server.crt.gz
 cp /usr/share/doc/openvpn/examples/sample-keys/{server.crt,server.key} $OpenVPNPath
 
@@ -52,3 +52,5 @@ if [ $status == 'active(running)' ]; then
     echo -e "\e[1m\e[32mComplete with no errors! Enjoy!\e[39m\e[0m"
     exit 0
 fi
+read -p "\e[1m\e[32mFor the VPN to work, we need to reboot the VPN. Press Enter to Continue...\e[39m\e[0m"
+
