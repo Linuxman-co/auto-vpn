@@ -29,12 +29,12 @@ create_client_config() {
 	echo persist-key >> $ClientConf
 	echo persist-tun >> $ClientConf
 	echo ca ca.crt >> $ClientConf
-	echo cert $1.crt >> $ClientConf
-	echo key $1.key >> $ClientConf
+	echo cert client.crt >> $ClientConf
+	echo key client.key >> $ClientConf
 	echo remote-cert-tls server >> $ClientConf
 	echo tls-auth ta.key 1 >> $ClientConf
 	echo cipher AES-256-CBC >> $ClientConf
-	echo verb 3 >> $ClientConf
+	echo verb 0 >> $ClientConf
 	echo tls-client >> $ClientConf
 	echo key-direction 1 >> $ClientConf
 
