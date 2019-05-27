@@ -4,6 +4,9 @@ Easily create an anonymous VPN with Digital Ocean, no logs, destroy at any time 
 # Distributions
 Ubuntu/Debian
 
+# VPS Note
+When creating a Droplet in Digital Ocean, make the hostname something "normal" instead of the gibberish it automaticaly generates or the script will have trouble sending emails because of spam filters.
+
 # Instructions
 1. CD Into temp or wherever you want to download the files
 
