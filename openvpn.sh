@@ -8,8 +8,8 @@ echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Checking for updates\e[39m\e[0m"
 sudo apt update
 sudo apt dist-upgrade -y -q
 
-echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Installing OpenVPN\e[39m\e[0m"
-sudo apt install openvpn openssl mailutils zip -y -q
+echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Installing Required Packages\e[39m\e[0m"
+sudo apt install openvpn openssl mailutils zip gzip -y -q
 mkdir /var/log/openvpn
 touch /var/log/openvpn/openvpn-status.log
 touch /var/log/openvpn/openvpn.log
@@ -19,13 +19,11 @@ sudo cp server.conf $OpenVPNPath/
 
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Creating Server Certificates\e[39m\e[0m"
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generating CA\e[39m\e[0m"
-sudo openssl genrsa -out $OpenVPNPath/ca.key 2048
-sudo openssl req -x509 -new -nodes -key $OpenVPNPath/ca.key -sha256 -days 1826 -subj "/C=AA/ST=BB/L=CC/O=DD/OU=EE/CN=$Host" -out $OpenVPNPath/ca.crt
+cp /usr/share/doc/openvpn/examples/sample-keys/{ca.crt,ca.key} $OpenVPNPath
 
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generating Certificate\e[39m\e[0m"
-sudo openssl genrsa -out $OpenVPNPath/server.key 2048
-sudo openssl req -new -key $OpenVPNPath/server.key -subj "/C=AA/ST=BB/L=CC/O=DD/OU=EE/CN=$Host" -out $OpenVPNPath/server.csr
-sudo openssl x509 -req -in $OpenVPNPath/server.csr -CA $OpenVPNPath/ca.crt -CAkey $OpenVPNPath/ca.key -set_serial 01 -out $OpenVPNPath/server.crt -days 365 -sha256
+gzip -d /usr/share/doc/openvpn/examples/sample-keys/server.crt.gz
+cp /usr/share/doc/openvpn/examples/sample-keys/{server.crt,server.key} $OpenVPNPath
 
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Generate Diffie-Hellman PEM\e[39m\e[0m"
 sudo openssl dhparam -out $OpenVPNPath/dh2048.pem 2048
