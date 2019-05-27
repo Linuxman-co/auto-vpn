@@ -2,7 +2,7 @@
 Easily create an anonymous VPN with Digital Ocean, no logs, destroy at any time with no trace. You **can** use this for your own personal server if you wish but the whole purpose of this script is to create disposable VPN's in DigitalOcean or any other VPS Provider. (D.O. confirmed they do not track what goes on within the VPS).
 
 # Distributions
-Ubuntu/Debian
+Ubuntu
 
 # VPS Note
 When creating a Droplet in Digital Ocean, make the hostname something "normal" instead of the gibberish it automaticaly generates or the script will have trouble sending emails because of spam filters.
