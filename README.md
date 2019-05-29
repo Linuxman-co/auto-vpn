@@ -39,4 +39,4 @@ When creating a Droplet in Digital Ocean, make the hostname something "normal" i
     
 2. After installing the OpenVPN Client in Windows, rename the tun interface it creates to "OpenVPN" so the config works as it should.
 
-3. In the ZIP, browse through /etc/openvpn/(client name)/ and copy its contents to your OpenVPN Directory in C:\Users\<your username>\OpenVPN\.
+3. In the ZIP, browse through /etc/openvpn/(client name)/ and copy its contents to your OpenVPN Directory in C:\Users\<your username>\OpenVPN\config\.
