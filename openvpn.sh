@@ -53,4 +53,4 @@ if [ $status == 'active(running)' ]; then
     exit 0
 fi
 read -p "\e[1m\e[32mFor the VPN to work, we need to reboot the VPN. Press Enter to Continue...\e[39m\e[0m"
-
+sudo reboot
