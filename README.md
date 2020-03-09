@@ -22,16 +22,16 @@ Google and other mail providers increased security to prevent spam, so changing 
     `cd auto-vpn`
     
     `chmod +x {openvpn.sh,win-client.sh}`
+
+4. Run the script
+
+    `./openvpn.sh`
     
     During Updates, you may be asked which grub configuration to use, just select to keep the current (default selected)
     
     During Postfix Configuration, select **Internet Site**, **system mail name** will be the hostname of your VPS.
     
     During the setup, select **yes** on the prompts for IP Tables
-
-4. Run the script
-
-    `./openvpn.sh`
 
 # Windows Client
 1. Run the win-client.sh script and add the client name followed by your email.
