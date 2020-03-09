@@ -5,7 +5,8 @@ Easily create an anonymous VPN with Digital Ocean, no logs, destroy at any time 
 Ubuntu
 
 # VPS Note
-When creating a Droplet in Digital Ocean, make the hostname something "normal" instead of the gibberish it automaticaly generates or the script will have trouble sending emails because of spam filters.
+~~When creating a Droplet in Digital Ocean, make the hostname something "normal" instead of the gibberish it automaticaly generates or the script will have trouble sending emails because of spam filters.~~
+Google and other mail providers increased security to prevent spam, so changing the hostname of the VPS won't allow your emails to reach even the spam folder anymore, you will have to transfer the ZIP file using SCP to your computer now or until i figure out an easier way to do this.
 
 # Instructions
 1. CD Into temp or wherever you want to download the files
@@ -21,6 +22,8 @@ When creating a Droplet in Digital Ocean, make the hostname something "normal" i
     `cd auto-vpn`
     
     `chmod +x {openvpn.sh,win-client.sh}`
+    
+    During Updates, you may be asked which grub configuration to use, just select to keep the current (default selected)
     
     During Postfix Configuration, select **Internet Site**, **system mail name** will be the hostname of your VPS.
     
