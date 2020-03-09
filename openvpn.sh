@@ -51,5 +51,5 @@ status=$(systemctl status openvpn@server | grep Active | awk '{print $2 $3}')
 if [ $status == 'active(running)' ]; then
     echo -e "\e[1m\e[32mComplete with no errors! Enjoy!\e[39m\e[0m"
 fi
-read -p "\e[1m\e[32mFor the VPN to work, we need to reboot the VPN. Press Enter to Continue...\e[39m\e[0m"
+read -pe "\e[1m\e[32mFor the VPN to work, we need to reboot the VPN. Press Enter to Continue...\e[39m\e[0m"
 sudo reboot
