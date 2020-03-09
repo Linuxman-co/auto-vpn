@@ -6,7 +6,7 @@ Ubuntu
 
 # VPS Note
 ~~When creating a Droplet in Digital Ocean, make the hostname something "normal" instead of the gibberish it automaticaly generates or the script will have trouble sending emails because of spam filters.~~
-Google and other mail providers increased security to prevent spam, so changing the hostname of the VPS won't allow your emails to reach even the spam folder anymore, you will have to transfer the ZIP file using SCP to your computer now or until i figure out an easier way to do this.
+Google and other mail providers increased security to prevent spam, so changing the hostname of the VPS won't allow your emails to reach even the spam folder anymore, you will have to transfer the ZIP file using SCP to your computer now or until i figure out an easier way to do this. When using SCP, the config zip archive is located in `/etc/openvpn/(clientname)`
 
 # Instructions
 1. CD Into temp or wherever you want to download the files
