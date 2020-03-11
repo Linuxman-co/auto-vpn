@@ -85,7 +85,7 @@ mkdir /var/www/vpn-client
 chmod a+rx /var/www/vpn-client/*.zip
 a2enmod ssl
 a2ensite vpn-client.conf
-htpasswd -b -c /var/www/vpn-client/.htpasswd
+htpasswd -b -c /var/www/vpn-client/.htpasswd vpn supersneaky
 systemctl enable apache2.service
 systemctl start apache2.service
 
