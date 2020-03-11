@@ -33,7 +33,7 @@ Google and other mail providers increased security to prevent spam, so changing 
     
     During the setup, select **yes** on the prompts for IP Tables
     
-***5. Make sure you download the client config zip using SCP as mentioned earlier.***
+  ***5. Make sure you download the client config zip using SCP as mentioned earlier.***
 
 # Windows Client
 1. Run the win-client.sh script and add the client name followed by your email.
