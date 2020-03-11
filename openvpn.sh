@@ -3,6 +3,7 @@
 # Declare Variables
 OpenVPNPath=/etc/openvpn
 GetInterface=$(ip add | grep ^[0-9] | awk 'NR==2 {print $2}' | tr -d ":")
+PublicIP=$(curl icanhazip.com)
 
 # Update the system
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Checking for updates\e[39m\e[0m"
@@ -11,7 +12,7 @@ apt dist-upgrade -y -q
 
 # Install required packages
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Installing Required Packages\e[39m\e[0m"
-apt install openvpn openssl mailutils zip gzip apache2 -y -q
+apt install openvpn openssl zip gzip apache2 -y -q
 mkdir /var/log/openvpn
 touch /var/log/openvpn/openvpn-status.log
 touch /var/log/openvpn/openvpn.log
@@ -95,7 +96,7 @@ if [ $apache2_status == 'active(running)' ]; then
     echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Apache2 is Running with no errors!\e[39m\e[0m"
 fi
 
-echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Your configuration files can now be downloaded from https://$(curl icanhazip.com)/\e[39m\e[0m"
+echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Your configuration files can now be downloaded from https://$PublicIP/\e[39m\e[0m"
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Use the following to authenticate:\e[39m\e[0m"
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Username: vpn\e[39m\e[0m"
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Password: supersneaky\e[39m\e[0m"
