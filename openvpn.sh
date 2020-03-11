@@ -9,7 +9,7 @@ sudo apt update
 sudo apt dist-upgrade -y -q
 
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Installing Required Packages\e[39m\e[0m"
-sudo apt install openvpn openssl mailutils zip gzip -y -q
+sudo apt install openvpn openssl mailutils zip gzip apache2 -y -q
 mkdir /var/log/openvpn
 touch /var/log/openvpn/openvpn-status.log
 touch /var/log/openvpn/openvpn.log
