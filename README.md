@@ -32,6 +32,8 @@ Google and other mail providers increased security to prevent spam, so changing 
     During Postfix Configuration, select **Internet Site**, **system mail name** will be the hostname of your VPS.
     
     During the setup, select **yes** on the prompts for IP Tables
+    
+5. Make sure you download the client config zip using SCP as mentioned earlier.
 
 # Windows Client
 1. Run the win-client.sh script and add the client name followed by your email.
@@ -42,4 +44,33 @@ Google and other mail providers increased security to prevent spam, so changing 
     
 2. After installing the OpenVPN Client in Windows, rename the tun interface it creates to "OpenVPN" so the config works as it should.
 
-3. In the ZIP, browse through /etc/openvpn/(client name)/ and copy its contents to your OpenVPN Directory in C:\Users\<your username>\OpenVPN\config\.
+3. In the ZIP, copy its contents to your OpenVPN Directory in `C:\Users\<your username>\OpenVPN\config\`.
+
+# Linux Client
+For linux, it is easier to just configure the VPN connection using the Network Manager Interface. If you want to connect to the VPN via the CLI, you will have to go through the trouble of creating the TUN interface yourself so OpenVPN can tap into it.
+1. Open the ***"Edit Connections"*** window.
+2. Select the ***"+"*** to add a new connection.
+3. Select ***OpenVPN*** from the dropdown and click ***Create***.
+4. Give the connection a name.
+5. In the ***VPN*** tab, add the following:
+
+ - ***Gateway:*** VPS IP Address
+ - ***Type:*** Certificate (TLS)
+ - ***CA certificate:*** ca.crt
+ - ***User certificate:*** client.crt
+ - ***User private key:*** client.key
+ 
+ 6. In the same VPN tab, click on ***Advanced***.
+ 7. In the ***Advanced*** window under the ***General*** tab, select:
+ 
+ - ***Use a TCP connection***
+ - ***Set virtual device type:*** TUN
+ 
+ 8. In the ***Security*** tab, select the ***Cipher*** to be ***AES-256-CBC***.
+ 9. In the ***TLS Authentication*** tab, select:
+ 
+  - ***Mode:*** TLS-Auth
+  - ***Key File:*** ta.key
+  - ***Key Direction:*** 1
+  
+  Then click ***OK***.
