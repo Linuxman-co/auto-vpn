@@ -9,21 +9,17 @@ Ubuntu
 Google and other mail providers increased security to prevent spam, so changing the hostname of the VPS won't allow your emails to reach even the spam folder anymore, you will have to transfer the ZIP file using SCP to your computer now or until i figure out an easier way to do this. When using SCP, the config zip archive is located in `/etc/openvpn/(clientname)`
 
 # Instructions
-1. CD Into temp or wherever you want to download the files
-
-    `cd /tmp`
-
-2. Download the files
+1. Download the files
 
     `git clone https://github.com/xlinuxmanx/auto-vpn.git`
 
-3. CD Into the folder and make the scipt executable
+2. CD Into the folder and make the scipt executable
 
     `cd auto-vpn`
     
     `chmod +x {openvpn.sh,win-client.sh}`
 
-4. Run the script
+3. Run the script
 
     `./openvpn.sh`
     
