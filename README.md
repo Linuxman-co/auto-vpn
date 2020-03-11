@@ -41,6 +41,7 @@ Google and other mail providers increased security to prevent spam, so changing 
     `./win-client.sh Client-Name my@email.address`
     
     The Script will automatically generate a configuration file for this VPN and email it to you! (Check your spam)
+    
     ***NOTE:*** As mentioned before, this may or may not work with your email provider due to better spam filters now.
     
 2. After installing the OpenVPN Client in Windows, rename the tun interface it creates to "OpenVPN" so the config works as it should.
