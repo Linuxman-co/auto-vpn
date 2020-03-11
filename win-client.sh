@@ -3,7 +3,7 @@
 display_usage() {
 	echo "This script creates a configuration for Windows Systems"
 	echo ""
-	echo "Usage: ./win-client.sh <client-name> <email>"
+	echo "Usage: ./win-client.sh <client-name>"
 }
 
 create_client_config() {
@@ -47,10 +47,7 @@ create_client_config() {
 	cp $ClientDir/$1.zip /var/www/vpn-client
 	chmod a+rx /var/www/vpn-client -R
 
-	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Sending ZIP to $2\e[0m\e[39m"
-	echo "Attached is the VPN Client Config for $1" | mail -s "OpenVPN Client for $1" $2 -A $ClientDir/$1.zip
-	
-	echo -e "\e[1m\e[32mClient configuration has been emailed! Check your spam\e[0m\e[39m"
+	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] You can now download the ZIP at https://$PublicIP/$1.zip\e[0m\e[39m"
 }
 
 if [[ $USER -ne "root" ]]
@@ -71,4 +68,4 @@ then
 	exit 1
 fi
 
-create_client_config "$1" "$2"
+create_client_config "$1"
