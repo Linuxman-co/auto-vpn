@@ -62,7 +62,7 @@ then
 	exit 0
 fi
 
-if [ $# -le 1 ]
+if [ $# -le 0 ]
 then
 	display_usage
 	exit 1
