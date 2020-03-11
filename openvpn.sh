@@ -83,7 +83,7 @@ echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Copying and Setting Up Virtualhost
 cp vpn-client.conf /etc/apache2/sites-available/
 mkdir /var/www/vpn-client
 chmod a+rx /var/www/vpn-client/*.zip
-echo "Listen 443" >> /etc/apache2/ports.conf
+a2enmod ssl
 a2ensite vpn-client.conf
 htpasswd -b -c /var/www/vpn-client/.htpasswd
 systemctl enable apache2.service
