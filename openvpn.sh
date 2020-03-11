@@ -84,7 +84,7 @@ cp vpn-client.conf /etc/apache2/sites-available/
 mkdir /var/www/vpn-client
 chmod a+rx /var/www/vpn-client/*.zip
 a2ensite vpn-client.conf
-htpasswd -bc /var/www/vpn-config/.htpasswd
+htpasswd -b -c /var/www/vpn-client/.htpasswd
 systemctl enable apache2.service
 systemctl start apache2.service
 
