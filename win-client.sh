@@ -44,7 +44,7 @@ create_client_config() {
 
 	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Compressing Client Config\e[0m\e[39m"
 	zip -j $ClientDir/$1.zip $ClientDir/*.*
-	cp -j $ClientDir/$1.zip /var/www/vpn-client
+	cp $ClientDir/$1.zip /var/www/vpn-client
 	chmod a+rx /var/www/vpn-client -R
 
 	echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Sending ZIP to $2\e[0m\e[39m"
