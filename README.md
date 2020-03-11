@@ -4,10 +4,6 @@ Easily create an anonymous VPN with Digital Ocean, no logs, destroy at any time 
 # Distributions
 Ubuntu
 
-# VPS Note
-~~When creating a Droplet in Digital Ocean, make the hostname something "normal" instead of the gibberish it automaticaly generates or the script will have trouble sending emails because of spam filters.~~
-Google and other mail providers increased security to prevent spam, so changing the hostname of the VPS won't allow your emails to reach even the spam folder anymore, you will have to transfer the ZIP file using SCP to your computer now or until i figure out an easier way to do this. When using SCP, the config zip archive is located in `/etc/openvpn/(clientname)`
-
 # Instructions
 1. Download the files
 
@@ -25,20 +21,16 @@ Google and other mail providers increased security to prevent spam, so changing 
     
     During Updates, you may be asked which grub configuration to use, just select to keep the current (default selected)
     
-    During Postfix Configuration, select **Internet Site**, **system mail name** will be the hostname of your VPS.
-    
     During the setup, select **yes** on the prompts for IP Tables
-    
-***5. Make sure you download the client config zip using SCP as mentioned earlier.***
-
+   
+4. At the end of the script, you will be given a URL including user/pass to download the config files later. Take a note of it!
+ 
 # Windows Client
-1. Run the win-client.sh script and add the client name followed by your email.
+1. Run the win-client.sh script and add the client name.
 
-    `./win-client.sh Client-Name my@email.address`
+    `./win-client.sh Client-Name`
     
-    The Script will automatically generate a configuration file for this VPN and email it to you! (Check your spam)
-    
-    ***NOTE:*** As mentioned before, this may or may not work with your email provider due to better spam filters now.
+    The Script will automatically generate a configuration file for this VPN and make it available from the URL provided earlier during setup.
     
 2. After installing the OpenVPN Client in Windows, rename the tun interface it creates to "OpenVPN" so the config works as it should.
 
