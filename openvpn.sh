@@ -3,7 +3,6 @@
 # Declare Variables
 OpenVPNPath=/etc/openvpn
 GetInterface=$(ip add | grep ^[0-9] | awk 'NR==2 {print $2}' | tr -d ":")
-ApacheSite=/etc/apache2/sites-available/vpn.conf
 
 # Update the system
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Checking for updates\e[39m\e[0m"
@@ -81,9 +80,19 @@ a2dissite 000-default.conf
 
 # Create new apache2 site using SSL
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Copying and Setting Up Virtualhost for VPN Clients\e[39m\e[0m"
-cp vpn-client.conf $ApacheSite
+cp vpn-client.conf /etc/apache2/sites-available/
 mkdir /var/www/vpn-client
-chmod a+rx /var/www/vpn-client -R
+chmod a+rx /var/www/vpn-client/*.zip
+a2ensite vpn-client.conf
+htpasswd -bc /var/www/vpn-config/.htpasswd
+systemctl enable apache2.service
+systemctl start apache2.service
+
+# Check if apache started with no errors
+echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Checking Apache2 Status\e[39m\e[0m"
+if [ $apache2_status == 'active(running)' ]; then
+    echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Apache2 is Running with no errors!\e[39m\e[0m"
+fi
 
 # Reboot the system so IP Forwarding works
 read -p "For the VPN to work, we need to reboot the VPN. Press Enter to Continue..."
