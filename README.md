@@ -30,7 +30,7 @@ Ubuntu
 
     `./win-client.sh Client-Name`
     
-    The Script will automatically generate a configuration file for this VPN and make it available from the URL provided earlier during setup.
+    The Script will automatically generate a configuration file for this VPN and make it available from the URL provided earlier during setup. If you forget the URL, its just `https://<VPS IP>/<client name>.zip`.
     
 2. After installing the OpenVPN Client in Windows, rename the tun interface it creates to "OpenVPN" so the config works as it should.
 
