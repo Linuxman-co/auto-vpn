@@ -110,6 +110,7 @@ pac_file=/var/www/vpn-client/scripts/proxy.pac
 echo "function FindProxyForURL(url, host) {" >> $pac_file
 echo "return \"PROXY $PublicIP:3128\"" >> $pac_file
 echo "}" >> $pac_file
+chmod a+rx $pac_file
 
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Setup Complete, starting Squid\e[39m\e[0m"
 systemctl enable squid.service
@@ -127,6 +128,7 @@ echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Use the following to authenticate:
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Username: vpn\e[39m\e[0m"
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Password: supersneaky\e[39m\e[0m"
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Proxy Address: $PublicIP:3128\e[39m\e[0m"
+echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Proxy PAC Script: https://$PublicIP/scripts/proxy.pac\e[39m\e[0m"
 
 # Reboot the system so IP Forwarding works
 read -p "For the VPN to work, we need to reboot the VPN. Make sure you know the user/pass for the website to download the config files.\nPress Enter when you're ready..."
