@@ -12,7 +12,7 @@ apt dist-upgrade -y -q
 
 # Install required packages
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Installing Required Packages\e[39m\e[0m"
-apt install openvpn openssl zip gzip apache2 -y -q
+apt install openvpn openssl zip gzip apache2 squid -y -q
 mkdir /var/log/openvpn
 touch /var/log/openvpn/openvpn-status.log
 touch /var/log/openvpn/openvpn.log
@@ -100,6 +100,13 @@ echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Your configuration files can now b
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Use the following to authenticate:\e[39m\e[0m"
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Username: vpn\e[39m\e[0m"
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Password: supersneaky\e[39m\e[0m"
+
+# Configure SQUID
+echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Stopping Squid\e[39m\e[0m"
+systemctl stop squid
+mv /etc/squid/squid.conf /etc/squid/squid.conf.org
+cp squid.conf /etc/squid/squid.conf
+
 
 # Reboot the system so IP Forwarding works
 read -p "For the VPN to work, we need to reboot the VPN. Make sure you know the user/pass for the website to download the config files.\nPress Enter when you're ready..."
