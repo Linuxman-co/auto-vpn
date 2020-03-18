@@ -96,17 +96,27 @@ if [ $apache2_status == 'active(running)' ]; then
     echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Apache2 is Running with no errors!\e[39m\e[0m"
 fi
 
+# Configure SQUID
+echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Stopping Squid\e[39m\e[0m"
+systemctl stop squid.service
+echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Setting up Squid\e[39m\e[0m"
+mv /etc/squid/squid.conf /etc/squid/squid.conf.org
+cp squid.conf /etc/squid/squid.conf
+echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Setup Complete, starting Squid\e[39m\e[0m"
+systemctl start squid.service
+
+# Check if squid started with no errors
+squid_status=$(systemctl status squid.service | grep active | awk '{print $2 $3}')
+echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Checking Squid Status\e[39m\e[0m"
+if [ $squid_status == 'active(running)' ]; then
+    echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Squid is Running with no errors!\e[39m\e[0m"
+fi
+
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Your configuration files can now be downloaded from https://$PublicIP/\e[39m\e[0m"
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Use the following to authenticate:\e[39m\e[0m"
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Username: vpn\e[39m\e[0m"
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Password: supersneaky\e[39m\e[0m"
-
-# Configure SQUID
-echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Stopping Squid\e[39m\e[0m"
-systemctl stop squid
-mv /etc/squid/squid.conf /etc/squid/squid.conf.org
-cp squid.conf /etc/squid/squid.conf
-
+echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Proxy Address: $PublicIP:3128\e[39m\e[0m"
 
 # Reboot the system so IP Forwarding works
 read -p "For the VPN to work, we need to reboot the VPN. Make sure you know the user/pass for the website to download the config files.\nPress Enter when you're ready..."
