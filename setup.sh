@@ -83,7 +83,9 @@ a2dissite 000-default.conf
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Copying and Setting Up Virtualhost for VPN Clients\e[39m\e[0m"
 cp vpn-client.conf /etc/apache2/sites-available/
 mkdir /var/www/vpn-client
+mkdir /var/www/vpn-client/scripts
 chmod a+rx /var/www/vpn-client/*.zip
+chmod a+rx /var/www/vpn-client/scripts/*.pac
 a2enmod ssl
 a2ensite vpn-client.conf
 htpasswd -b -c /var/www/vpn-client/.htpasswd vpn supersneaky
@@ -102,6 +104,13 @@ systemctl stop squid.service
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Setting up Squid\e[39m\e[0m"
 mv /etc/squid/squid.conf /etc/squid/squid.conf.org
 cp squid.conf /etc/squid/squid.conf
+
+# Creating PAC Script
+pac_file=/var/www/vpn-client/scripts/proxy.pac
+echo "function FindProxyForURL(url, host) {" >> $pac_file
+echo "return \"PROXY $PublicIP:3128\"" >> $pac_file
+echo "}" >> $pac_file
+
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Setup Complete, starting Squid\e[39m\e[0m"
 systemctl enable squid.service
 systemctl start squid.service
