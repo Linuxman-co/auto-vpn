@@ -108,7 +108,7 @@ cp squid.conf /etc/squid/squid.conf
 # Creating PAC Script
 pac_file=/var/www/vpn-client/scripts/proxy.pac
 echo "function FindProxyForURL(url, host) {" >> $pac_file
-echo "return \"PROXY $PublicIP:3128\"" >> $pac_file
+echo "return \"PROXY $PublicIP:3128; DIRECT\"" >> $pac_file
 echo "}" >> $pac_file
 chmod a+rx $pac_file
 
