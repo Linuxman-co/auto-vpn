@@ -103,6 +103,7 @@ echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Setting up Squid\e[39m\e[0m"
 mv /etc/squid/squid.conf /etc/squid/squid.conf.org
 cp squid.conf /etc/squid/squid.conf
 echo -e "\e[1m\e[32m[\e[1m\e[31m*\e[1m\e[32m] Setup Complete, starting Squid\e[39m\e[0m"
+systemctl enable squid.service
 systemctl start squid.service
 
 # Check if squid started with no errors
