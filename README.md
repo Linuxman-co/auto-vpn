@@ -1,5 +1,5 @@
 # Auto VPN
-Easily create an anonymous VPN with Digital Ocean, no logs, destroy at any time with no trace. You **can** use this for your own personal server if you wish but the whole purpose of this script is to create disposable VPN's in DigitalOcean or any other VPS Provider. (D.O. confirmed they do not track what goes on within the VPS).
+Easily create an anonymous VPN and Proxy with Digital Ocean, no logs, destroy at any time with no trace. You **can** use this for your own personal server if you wish but the whole purpose of this script is to create disposable VPN's in DigitalOcean or any other VPS Provider. (D.O. confirmed they do not track what goes on within the VPS).
 
 # Distributions
 Ubuntu
@@ -23,7 +23,7 @@ Ubuntu
     
     During the setup, select **yes** on the prompts for IP Tables
    
-4. At the end of the script, you will be given a URL including user/pass to download the config files later. Take a note of it!
+4. At the end of the script, you will be given a URL including user/pass to download the config files later as well as the proxy address and port to use in either your browser or network settings.. Take a note of it!
  
 # Windows Client
 1. Run the win-client.sh script and add the client name.
