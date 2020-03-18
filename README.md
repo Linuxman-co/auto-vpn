@@ -13,11 +13,11 @@ Ubuntu
 
     `cd auto-vpn`
     
-    `chmod +x {openvpn.sh,win-client.sh}`
+    `chmod +x {setup.sh,win-client.sh}`
 
 3. Run the script
 
-    `./openvpn.sh`
+    `./setup.sh`
     
     During Updates, you may be asked which grub configuration to use, just select to keep the current (default selected)
     
